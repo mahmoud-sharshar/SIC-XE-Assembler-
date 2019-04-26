@@ -1,0 +1,48 @@
+line  Address   label     opcode    operand   comment
+1     0                                       .234567890123456789
+2     0         LAB2C     START     1000      
+3     1000                LD        ALPHA     
+                       error : not valid operation code
+4     1000                LDB       #10       
+5     1003                LDX       #0        
+6     1006                ADDR      A,B       
+7     1008                STA       SAVEW,X   
+8     100b                LDX       #1        
+9     100e                STA       SAVEW,X   
+10    1011                                    .Format 4
+11    1011                +SUB      #12       
+12    1015                LDX       #0        
+13    1018                LDCH      HEXCHAR   
+14    101b                STA       INPUT     
+15    101e      LOOP      LDCH      STRING,X  
+16    1021                COMP      INPUT     
+17    1024                JEQ       FOUND     
+18    1027                STCH      OUTPUT,X  
+19    102a                TX        #5        
+                       error : not valid operation code
+20    102a                JLT       LOOP      
+21    102d      FOUND     J         OUT       
+22    1030      ALPHA     WORD      2         
+23    1033      SAVEW     RESW      2         
+24    1039      HEXCHAR   BTE       X'61'     
+                       error : not valid operation code
+25    1039      INPUT     RESB      1         
+26    103a      STRING    BYTE      C'String' 
+27    1040      OUTPUT    RESB      5         
+28    1045                                    
+                    warning : last line of program must determine with end statement
+
+
+----------------------------
+        Symbol Table        
+----------------------------
+    label    |   address   |
+ ALPHA       | 1030        |
+ FOUND       | 102d        |
+ HEXCHAR     | 1039        |
+ INPUT       | 1039        |
+ LOOP        | 101e        |
+ OUTPUT      | 1040        |
+ SAVEW       | 1033        |
+ STRING      | 103a        |
+--------------------------------
